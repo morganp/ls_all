@@ -6,7 +6,5 @@ module LsAll
 
 end
 
-Dir.chdir( File.dirname( __FILE__ ) )
-
-require 'ls_all/ls_all.rb'
-require 'ls_all/ls_all_opts.rb'
+require 'ls_all/ls_all'
+require 'ls_all/ls_all_opts'
