@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'lib')
+
+require 'rubygems'
+require 'ls_all'
+
+   options = LsAll::LsAllOpts.parse(ARGV)
+   list    = LsAll::LsAll.new( options.depth, options.count )
+
+   files = Dir.glob(options.path + '/*')
+   list.list_files( files )
