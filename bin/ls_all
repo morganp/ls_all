@@ -5,8 +5,21 @@ $LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 require 'rubygems'
 require 'ls_all'
 
-   options = LsAll::LsAllOpts.parse(ARGV)
-   list    = LsAll::LsAll.new( options.depth, options.count )
+  opts = Slop.parse :help => true do
+    on :V, :version, 'Print the version' do
+      puts "Version #{LsAll::VERSION}"
+      exit
+    end
+    
+    on :d, :max_depth, Integer, "Maximum traversal depth", :optional => true
+    on :c, :count, "Return file count for max depth of folder", :optional => true
+    on :t, :tree,  "Output syntax like the tree command", :optional => true
+    on :p, :path, "Specify a different path to list", :default =>  '.', :optional => true
 
-   files = Dir.glob(options.path + '/*')
-   list.list_files( files )
+  end
+  options = opts.to_hash
+  # options = LsAll::LsAllOpts.parse(ARGV)
+  list    = LsAll::LsAll.new( options )
+
+  files = Dir.glob( File.join( options["path"], '*' ) )
+  list.list_files( files )

@@ -2,9 +2,9 @@
 
 module LsAll
 
-   VERSION = "0.0.1"
+   VERSION = "0.0.2"
 
 end
 
 require 'ls_all/ls_all'
-require 'ls_all/ls_all_opts'
+#require 'ls_all/ls_all_opts'
